@@ -1,5 +1,8 @@
 package pl.sda.javapoz19.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -10,6 +13,10 @@ public class Doctor {
     @GeneratedValue(generator = "doctorSeq")
     @SequenceGenerator(name = "doctorSeq", sequenceName = "doctor_Seq", allocationSize = 1)
     private Long id ;
+
+    private String username;
+    private String password;
+
     private String firstName;
     private String lastName;
 
@@ -17,6 +24,7 @@ public class Doctor {
     private Specialization specialization;
 
     @OneToOne(targetEntity = Address.class)
+    @Autowired
     private Address address;
 
     private String phoneNumber;
@@ -25,7 +33,9 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(Long id, String firstName, String lastName, Specialization specialization, Address address, String phoneNumber, String emailAddress){
+    public Doctor(String username, String password,Long id, String firstName, String lastName, Specialization specialization, Address address, String phoneNumber, String emailAddress){
+        this.username=username;
+        this.password=password;
         this.id=id;
         this.firstName=firstName;
         this.lastName=lastName;
@@ -33,6 +43,20 @@ public class Doctor {
         this.address=address;
         this.phoneNumber=phoneNumber;
         this.emailAddress=emailAddress;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+    public void setUsername(String username){
+        this.username=username;
+    }
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password=password;
     }
 
     public Long getId() {
@@ -97,6 +121,8 @@ public class Doctor {
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
         return Objects.equals(id, doctor.id) &&
+                Objects.equals(username, doctor.username) &&
+                Objects.equals(password, doctor.password) &&
                 Objects.equals(firstName, doctor.firstName) &&
                 Objects.equals(lastName, doctor.lastName) &&
                 specialization == doctor.specialization &&
@@ -107,6 +133,6 @@ public class Doctor {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, specialization, address, phoneNumber, emailAddress);
+        return Objects.hash(id, username, password, firstName, lastName, specialization, address, phoneNumber, emailAddress);
     }
 }
