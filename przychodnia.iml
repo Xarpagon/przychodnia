@@ -17,10 +17,14 @@
     <facet type="web" name="Web">
       <configuration>
         <webroots />
+<<<<<<< HEAD
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
         </sourceRoots>
+=======
+        <sourceRoots />
+>>>>>>> dc9bc5d2d75db8cfd929c580eca638d817168866
       </configuration>
     </facet>
   </component>
