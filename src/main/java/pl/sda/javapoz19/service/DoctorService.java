@@ -25,11 +25,12 @@ public class DoctorService {
     public Long addDoctor(Doctor doctor){
 
         doctorRepository.findAll().stream()
-                .filter(presentDoctor -> presentDoctor.getUsername().equalsIgnoreCase(doctor.getUsername()))
+                .filter(presentDoctor -> presentDoctor.getPesel().equals(doctor.getPesel()))
                 .findAny()
-                .ifPresent(doctor1 -> throwDuplicatedUserNameException(doctor1.getUsername()));
+                .ifPresent(doctor1 -> throwDuplicatedUserNameException(doctor1.getPesel()));
 
         doctorRepository.save(doctor);
+
         return doctor.getId();
 
     }

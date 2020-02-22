@@ -14,8 +14,8 @@ public class Doctor {
     @SequenceGenerator(name = "doctorSeq", sequenceName = "doctor_Seq", allocationSize = 1)
     private Long id ;
 
-    private String username;
-    private String password;
+    private String pesel;
+
 
     private String firstName;
     private String lastName;
@@ -23,8 +23,7 @@ public class Doctor {
     @Enumerated(EnumType.STRING)
     private Specialization specialization;
 
-    @OneToOne(targetEntity = Address.class)
-    @Autowired
+    @Embedded
     private Address address;
 
     private String phoneNumber;
@@ -33,30 +32,15 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(String username, String password,Long id, String firstName, String lastName, Specialization specialization, Address address, String phoneNumber, String emailAddress){
-        this.username=username;
-        this.password=password;
-        this.id=id;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.specialization=specialization;
-        this.address=address;
-        this.phoneNumber=phoneNumber;
-        this.emailAddress=emailAddress;
-    }
-
-    public String getUsername(){
-        return username;
-    }
-    public void setUsername(String username){
-        this.username=username;
-    }
-    public String getPassword(){
-        return password;
-    }
-
-    public void setPassword(String password){
-        this.password=password;
+    public Doctor(Long id, String pesel, String firstName, String lastName, Specialization specialization, Address address, String phoneNumber, String emailAddress) {
+        this.id = id;
+        this.pesel = pesel;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialization = specialization;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
     }
 
     public Long getId() {
@@ -65,6 +49,14 @@ public class Doctor {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
     }
 
     public String getFirstName() {
@@ -118,11 +110,10 @@ public class Doctor {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Doctor)) return false;
         Doctor doctor = (Doctor) o;
         return Objects.equals(id, doctor.id) &&
-                Objects.equals(username, doctor.username) &&
-                Objects.equals(password, doctor.password) &&
+                Objects.equals(pesel, doctor.pesel) &&
                 Objects.equals(firstName, doctor.firstName) &&
                 Objects.equals(lastName, doctor.lastName) &&
                 specialization == doctor.specialization &&
@@ -133,6 +124,6 @@ public class Doctor {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, firstName, lastName, specialization, address, phoneNumber, emailAddress);
+        return Objects.hash(id, pesel, firstName, lastName, specialization, address, phoneNumber, emailAddress);
     }
 }

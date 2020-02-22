@@ -25,10 +25,10 @@ public class DoctorServiceTest {
     @Test
     public void showAllDoctorsByLastNameShouldReturnDoctorListSize1ForLastNameZenkowski() {
 
-        //when
+        //given
         int expected = 1;
 
-        //given
+        //when
         List<Doctor> actual = sut.showAllDoctorsByLastName("Zenkowski");
 
         //then

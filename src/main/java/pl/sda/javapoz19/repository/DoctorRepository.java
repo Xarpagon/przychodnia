@@ -11,7 +11,7 @@ import java.util.List;
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
 
-    public List<Doctor> findDoctorsByLastName(String lastName);
+     List<Doctor> findDoctorsByLastName(String lastName);
 
 
 
