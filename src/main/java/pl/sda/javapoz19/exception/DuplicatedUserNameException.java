@@ -1,4 +1,4 @@
-package pl.sda.javapoz19.exceptions;
+package pl.sda.javapoz19.exception;
 
 public class DuplicatedUserNameException extends RuntimeException{
     public DuplicatedUserNameException(String message) {

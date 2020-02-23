@@ -29,6 +29,8 @@ public class DoctorController {
         return new ResponseEntity<>(doctorService.addDoctor(doctor), HttpStatus.CREATED);
     }
 
+
+
    /* @GetMapping(value = "/doctors/{specialization}", produces = "application/json")
     public List<Doctor> doctorsBySpecialization(@PathVariable String specialization){
 
