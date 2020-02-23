@@ -1,7 +1,7 @@
 package pl.sda.javapoz19.service;
 
 import org.springframework.stereotype.Service;
-import pl.sda.javapoz19.exceptions.DuplicatedUserNameException;
+import pl.sda.javapoz19.exception.DuplicatedUserNameException;
 import pl.sda.javapoz19.model.Doctor;
 
 import pl.sda.javapoz19.repository.DoctorRepository;
