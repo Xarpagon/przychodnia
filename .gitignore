@@ -12,7 +12,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-.idea/**/Project.xml
+.idea/codeStyles/Project.xml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -35,6 +35,7 @@
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 .idea/modules.xml
+.idea/encodings.xml
 .idea/*.iml
 .idea/modules
 *.iml
@@ -51,7 +52,7 @@ cmake-build-*/
 
 # IntelliJ
 out/
-target/**
+target/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -61,7 +62,6 @@ atlassian-ide-plugin.xml
 
 # Cursive Clojure plugin
 .idea/replstate.xml
-.idea/encodings.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
@@ -78,7 +78,7 @@ fabric.properties
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
-*.iml
+# *.iml
 # modules.xml
 # .idea/misc.xml
 # *.ipr
