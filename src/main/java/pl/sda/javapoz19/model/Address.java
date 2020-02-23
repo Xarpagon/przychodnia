@@ -1,38 +1,39 @@
 package pl.sda.javapoz19.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+
+
+import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Embeddable
 public class Address {
 
-    @Id
-    @GeneratedValue(generator = "addressSeq")
-    @SequenceGenerator(name = "addressSeq", sequenceName = "address_Seq", allocationSize = 1)
-    private Long id;
+
     private String street;
+    private String houseNumber;
     private String postcode;
     private String city;
+    private String country;
 
     public Address() {
     }
 
-    public Address(Long id, String street, String postcode, String city){
+    public Address(String street,String houseNumber, String postcode, String city, String country){
         this.street = street;
+        this.houseNumber=houseNumber;
         this.postcode = postcode;
         this.city = city;
+        this.country=country;
     }
 
 
-    public Long getId() {
-        return id;
+
+    public String getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
     }
 
     public String getStreet() {
@@ -59,19 +60,28 @@ public class Address {
         this.city = city;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Address)) return false;
         Address address = (Address) o;
-        return Objects.equals(id, address.id) &&
-                Objects.equals(street, address.street) &&
+        return Objects.equals(street, address.street) &&
+                Objects.equals(houseNumber, address.houseNumber) &&
                 Objects.equals(postcode, address.postcode) &&
-                Objects.equals(city, address.city);
+                Objects.equals(city, address.city) &&
+                Objects.equals(country, address.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, street, postcode, city);
+        return Objects.hash(street, houseNumber, postcode, city, country);
     }
 }

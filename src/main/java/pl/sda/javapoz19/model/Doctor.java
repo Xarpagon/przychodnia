@@ -1,5 +1,8 @@
 package pl.sda.javapoz19.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -10,13 +13,17 @@ public class Doctor {
     @GeneratedValue(generator = "doctorSeq")
     @SequenceGenerator(name = "doctorSeq", sequenceName = "doctor_Seq", allocationSize = 1)
     private Long id ;
+
+    private String pesel;
+
+
     private String firstName;
     private String lastName;
 
     @Enumerated(EnumType.STRING)
     private Specialization specialization;
 
-    @OneToOne(targetEntity = Address.class)
+    @Embedded
     private Address address;
 
     private String phoneNumber;
@@ -25,14 +32,15 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(Long id, String firstName, String lastName, Specialization specialization, Address address, String phoneNumber, String emailAddress){
-        this.id=id;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.specialization=specialization;
-        this.address=address;
-        this.phoneNumber=phoneNumber;
-        this.emailAddress=emailAddress;
+    public Doctor(Long id, String pesel, String firstName, String lastName, Specialization specialization, Address address, String phoneNumber, String emailAddress) {
+        this.id = id;
+        this.pesel = pesel;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialization = specialization;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
     }
 
     public Long getId() {
@@ -41,6 +49,14 @@ public class Doctor {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
     }
 
     public String getFirstName() {
@@ -94,9 +110,10 @@ public class Doctor {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Doctor)) return false;
         Doctor doctor = (Doctor) o;
         return Objects.equals(id, doctor.id) &&
+                Objects.equals(pesel, doctor.pesel) &&
                 Objects.equals(firstName, doctor.firstName) &&
                 Objects.equals(lastName, doctor.lastName) &&
                 specialization == doctor.specialization &&
@@ -107,6 +124,6 @@ public class Doctor {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, specialization, address, phoneNumber, emailAddress);
+        return Objects.hash(id, pesel, firstName, lastName, specialization, address, phoneNumber, emailAddress);
     }
 }
