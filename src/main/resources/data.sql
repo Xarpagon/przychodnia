@@ -10,4 +10,6 @@ Insert into DOCTOR (id,pesel, first_Name, last_Name, specialization, street, hou
 values (nextval('doctor_Seq'),'60090910099', 'Janusz', 'Nowak', 'UROLOGIST', 'Puławska','32', '78654', 'Poznań','Poland','+48333333333','janusz.nowak@wp.pl');
 
 
+Insert into PATIENT (id,pesel, first_Name, last_Name,street, house_number,postcode,city,country,phone_Number,email)
+values (nextval('doctor_Seq'),'9999999999', 'Kamil', 'Nowek', 'szamotulska','12', '62-090', 'Rokietnica','Poland','+48123456789','kamil.nowek@wp.pl');
 commit;
