@@ -1,12 +1,7 @@
+insert into ROLE (id, authority) values (nextval('role_seq'), 'USER');
+insert into ROLE (id, authority) values (nextval('role_seq'), 'ADMIN');
 
-Insert into ADDRESS (id, street, postcode, city) values (nextval('address_Seq'), 'Brzozowa 1', '88500', 'Sieradz');
-Insert into ADDRESS (id, street, postcode, city) values (nextval('address_Seq'), 'Żmigrodzka 44', '12540', 'Warszawa');
-Insert into ADDRESS (id, street, postcode, city) values (nextval('address_Seq'), 'Puławska 32', '78654', 'Poznań');
+insert INTO USER (username, password,) values ('user', '$2a$10$KvxPudrieuxpEgxw3e4yPOuYK59PgfQshx3RaVUTCpbKB82DC/0RC');
+insert INTO USER (username, password,) values ('admin', '$2a$10$IPJizmA0rxJBq9incE/PWub6B2nIDGm3z/2cIz6hAs/hgvKlQ5F9q');
 
-
-Insert into DOCTOR (id, first_Name, last_Name, specialization, address_id, email_Address, phone_Number)
-values (nextval('doctor_Seq'),'Zenek', 'Zenkowski', 'UROLOGIST', '1','+48999999999','zenek.zenkowski@wp.pl');
-Insert into DOCTOR (id, first_Name, last_Name, specialization, address_id, email_Address, phone_Number)
-values (nextval('doctor_Seq'),'Franek', 'Markowski', 'DERMATOLOGIST', '2','+48666666666','123.markowski@wp.pl');
-Insert into DOCTOR (id, first_Name, last_Name, specialization, address_id, email_Address, phone_Number)
-values (nextval('doctor_Seq'), 'Janusz', 'Nowak', 'UROLOGIST', '3','+48333333333','janusz.nowak@wp.pl');
+commit;

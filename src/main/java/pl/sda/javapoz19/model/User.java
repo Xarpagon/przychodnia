@@ -21,6 +21,9 @@ public class User implements UserDetails {
     @ManyToOne(targetEntity = Role.class)
     private Role role;
 
+    public User(String user, String password) {
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(role);
@@ -58,17 +61,22 @@ public class User implements UserDetails {
     public void setUsername(String username) {
         this.username = username;
     }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username);
+        return Objects.equals(username, user.username)&&
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username);
+        return Objects.hash(username,password);
     }
+
 }
