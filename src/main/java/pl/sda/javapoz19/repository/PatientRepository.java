@@ -9,6 +9,7 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient,Long> {
 
     List<Patient> findAllByPeselOrLastName(String pesel,String lastName);
+    List<Patient> deletePatientById(Long id);
 
 
 }
