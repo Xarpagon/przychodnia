@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class AppointmentService {
@@ -24,6 +25,10 @@ public class AppointmentService {
     public List<Appointment> showAllAppointmentsByDoctorId(Long id){
         return appointmentRepository.findAllByDoctorId(id);
 
+    }
+
+    public List<Appointment> fetchAllReservedAppointmentsByDoctorId(Long id){
+          return appointmentRepository.findAppointmentsByDoctorIdAndPatientNotNull(id);
     }
 
     public List<Appointment> addAppointments(AppointmentDto aDto){

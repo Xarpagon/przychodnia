@@ -23,6 +23,11 @@ public class AppointmentController {
         return appointmentService.showAllAppointmentsByDoctorId(id);
     }
 
+    @GetMapping(value = "/Appointment/doctor/reserved/{id}", produces = "application/json")
+    public List<Appointment> showReservedAppointmentsByDoctor(@PathVariable Long id){
+        return appointmentService.fetchAllReservedAppointmentsByDoctorId(id);
+    }
+
 
 
     @PostMapping(value = "/Appointment/doctor/schedule", consumes = "application/json")
@@ -30,6 +35,8 @@ public class AppointmentController {
         return appointmentService.addAppointments(appointmentDto);
 
     }
+
+
 
 
 
