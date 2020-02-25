@@ -29,6 +29,11 @@ public class Doctor {
     private String phoneNumber;
     private String emailAddress;
 
+
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
+
     public Doctor() {
     }
 

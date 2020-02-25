@@ -27,9 +27,30 @@ public class AppointmentService {
 
     }
 
-    public List<Appointment> fetchAllReservedAppointmentsByDoctorId(Long id){
-          return appointmentRepository.findAppointmentsByDoctorIdAndPatientNotNull(id);
+    public List<ReservedAppointmentDto> fetchAllReservedAppointmentsByDoctorId(Long id){
+
+        return convertToReservedAppointmentDto(appointmentRepository.findAppointmentsByDoctorIdAndPatientNotNull(id));
     }
+
+    public List<ReservedAppointmentDto> convertToReservedAppointmentDto(List<Appointment> appointments){
+
+        return appointments.stream()
+                .map(appointment1 -> toDto(appointment1)).collect(Collectors.toList());
+
+
+    }
+
+    public ReservedAppointmentDto toDto(Appointment appointment){
+
+        String doctorFullName = appointment.getDoctor().getFullName();
+        String patientFullName = appointment.getPatient().getFullName();
+        LocalDate appointmentDate = appointment.getAppointmentDate();
+        LocalTime appointmentTime = appointment.getAppointmentTime();
+        String description = appointment.getDescription();
+
+        return new ReservedAppointmentDto(doctorFullName, patientFullName, appointmentDate,appointmentTime, description);
+    }
+
 
     public List<Appointment> addAppointments(AppointmentDto aDto){
 

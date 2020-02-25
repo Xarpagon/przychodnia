@@ -18,27 +18,23 @@ public class Patient {
     private String email;
     private String phoneNumber;
 
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
+
     public Patient() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Patient patient = (Patient) o;
-        return Objects.equals(id, patient.id) &&
-                Objects.equals(pesel, patient.pesel) &&
-                Objects.equals(firstName, patient.firstName) &&
-                Objects.equals(lastName, patient.lastName) &&
-                Objects.equals(address, patient.address) &&
-                Objects.equals(email, patient.email) &&
-                Objects.equals(phoneNumber, patient.phoneNumber);
+    public Patient(Long id, String pesel, String firstName, String lastName, Address address, String email, String phoneNumber) {
+        this.id = id;
+        this.pesel = pesel;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, pesel, firstName, lastName, address, email, phoneNumber);
-    }
 
     public Long getId() {
         return id;
@@ -96,13 +92,23 @@ public class Patient {
         this.phoneNumber = phoneNumber;
     }
 
-    public Patient(Long id, String pesel, String firstName, String lastName, Address address, String email, String phoneNumber) {
-        this.id = id;
-        this.pesel = pesel;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return Objects.equals(id, patient.id) &&
+                Objects.equals(pesel, patient.pesel) &&
+                Objects.equals(firstName, patient.firstName) &&
+                Objects.equals(lastName, patient.lastName) &&
+                Objects.equals(address, patient.address) &&
+                Objects.equals(email, patient.email) &&
+                Objects.equals(phoneNumber, patient.phoneNumber);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pesel, firstName, lastName, address, email, phoneNumber);
+    }
+
 }

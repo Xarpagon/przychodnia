@@ -3,9 +3,10 @@ package pl.sda.javapoz19.controller;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.javapoz19.model.Appointment;
 import pl.sda.javapoz19.model.AppointmentDto;
-import pl.sda.javapoz19.model.Doctor;
+
+import pl.sda.javapoz19.model.ReservedAppointmentDto;
 import pl.sda.javapoz19.service.AppointmentService;
-import pl.sda.javapoz19.service.DoctorService;
+
 
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class AppointmentController {
     }
 
     @GetMapping(value = "/Appointment/doctor/reserved/{id}", produces = "application/json")
-    public List<Appointment> showReservedAppointmentsByDoctor(@PathVariable Long id){
+    public List<ReservedAppointmentDto> showReservedAppointmentsByDoctor(@PathVariable Long id){
+
         return appointmentService.fetchAllReservedAppointmentsByDoctorId(id);
     }
 
