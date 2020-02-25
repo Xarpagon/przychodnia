@@ -18,6 +18,10 @@ public class Patient {
     private String email;
     private String phoneNumber;
 
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
+
     public Patient() {
     }
 
@@ -67,45 +71,6 @@ public class Patient {
     public String getLastName() {
         return lastName;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Patient(Long id, String pesel, String firstName, String lastName, Address address, String email, String phoneNumber) {
-        this.id = id;
-        this.pesel = pesel;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
-}
 
     public void setLastName(String lastName) {
         this.lastName = lastName;

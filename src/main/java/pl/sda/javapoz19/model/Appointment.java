@@ -3,7 +3,10 @@ package pl.sda.javapoz19.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity
 public class Appointment {
@@ -22,6 +25,7 @@ public class Appointment {
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;
     private String description;
+
 
     public Appointment() {
     }
