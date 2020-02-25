@@ -27,7 +27,7 @@ public class AppointmentController {
 
     @PostMapping(value = "/Appointment/doctor/schedule", consumes = "application/json")
     public List<Appointment> addAppointmentsScheduleByDoctor(@RequestBody AppointmentDto appointmentDto){
-        return appointmentService.addMedicalAppointments(appointmentDto);
+        return appointmentService.addAppointments(appointmentDto);
 
     }
 

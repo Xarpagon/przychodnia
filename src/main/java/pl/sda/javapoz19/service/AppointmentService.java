@@ -3,6 +3,7 @@ package pl.sda.javapoz19.service;
 import org.springframework.stereotype.Service;
 import pl.sda.javapoz19.model.*;
 import pl.sda.javapoz19.repository.AppointmentRepository;
+import pl.sda.javapoz19.repository.DoctorRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,9 +14,11 @@ import java.util.*;
 public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
+    private final DoctorRepository doctorRepository;
 
-    public AppointmentService(AppointmentRepository appointmentRepository) {
+    public AppointmentService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository) {
         this.appointmentRepository = appointmentRepository;
+        this.doctorRepository = doctorRepository;
     }
 
     public List<Appointment> showAllAppointmentsByDoctorId(Long id){
@@ -23,9 +26,9 @@ public class AppointmentService {
 
     }
 
-    public List<Appointment> addMedicalAppointments(AppointmentDto madto){
+    public List<Appointment> addAppointments(AppointmentDto aDto){
 
-        List<Appointment> medicalAppointmentList = convertToEntitiesList(madto);
+        List<Appointment> medicalAppointmentList = convertToEntitiesList(aDto);
 
         return appointmentRepository.saveAll(medicalAppointmentList);
 
@@ -40,6 +43,7 @@ public class AppointmentService {
 
         int duration = aDto.getDuration();
 
+
         LocalTime appointmentTime = startTime;
 
         Long id = 1l;
@@ -48,7 +52,11 @@ public class AppointmentService {
 
                Appointment appointment = new Appointment();
 
-               appointment.setDoctor(aDto.getDoctor());
+
+               Long dtoDoctorId = aDto.getDoctorId();
+               doctorRepository.findDoctorById(dtoDoctorId);
+
+               appointment.setDoctor(getDoctorById(aDto));
                appointment.setAppointmentDate(aDto.getDate());
                appointment.setAppointmentTime(appointmentTime);
 
@@ -65,16 +73,13 @@ public class AppointmentService {
         return appointmentList;
     }
 
-    public static void main(String[] args) {
-        AppointmentService medicalAppointmentService;
-        Address address = new Address("Brzozowa", "1", "88700", "Piła", "Poland");
-        Doctor doctor = new Doctor(1L, "82121619936", "John", "Warki",
-                Specialization.UROLOGIST, address, "+48500600540", "awar@wp.pl");
-        AppointmentDto medicalAppointmentDto = new AppointmentDto(doctor, LocalDate.of(2020,02,24),
-                LocalTime.of(14,0),LocalTime.of(16,0),30);
-
+    private Doctor getDoctorById(AppointmentDto aDto) {
+        Long dtoDoctorId = aDto.getDoctorId();
+        return doctorRepository.findDoctorById(dtoDoctorId);
 
     }
+
+
 
 
 }

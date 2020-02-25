@@ -7,7 +7,7 @@ import java.util.Objects;
 public class AppointmentDto {
 
 
-    private Doctor doctor;
+    private Long  doctor_id;
 
     private LocalDate date;
 
@@ -17,19 +17,20 @@ public class AppointmentDto {
 
     private int duration;
 
-    public AppointmentDto(Doctor doctor, LocalDate date, LocalTime from, LocalTime upTill, int duration) {
+    public AppointmentDto(Long doctor_id, LocalDate date, LocalTime from, LocalTime upTill, int duration) {
+        this.doctor_id=doctor_id;
         this.date = date;
         this.from = from;
         this.upTill = upTill;
         this.duration = duration;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public Long getDoctorId() {
+        return doctor_id;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setDoctorId(Long doctor_id) {
+        this.doctor_id = doctor_id;
     }
 
     public LocalDate getDate() {
@@ -70,7 +71,7 @@ public class AppointmentDto {
         if (o == null || getClass() != o.getClass()) return false;
         AppointmentDto that = (AppointmentDto) o;
         return duration == that.duration &&
-                Objects.equals(doctor, that.doctor) &&
+                Objects.equals(doctor_id, that.doctor_id) &&
                 Objects.equals(date, that.date) &&
                 Objects.equals(from, that.from) &&
                 Objects.equals(upTill, that.upTill);
@@ -78,6 +79,6 @@ public class AppointmentDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(doctor, date, from, upTill, duration);
+        return Objects.hash(doctor_id, date, from, upTill, duration);
     }
 }
