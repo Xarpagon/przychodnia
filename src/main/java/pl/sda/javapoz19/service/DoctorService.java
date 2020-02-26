@@ -4,9 +4,11 @@ import org.springframework.stereotype.Service;
 import pl.sda.javapoz19.exception.DuplicatedUserNameException;
 import pl.sda.javapoz19.model.Doctor;
 
+import pl.sda.javapoz19.model.Specialization;
 import pl.sda.javapoz19.repository.DoctorRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -52,19 +54,14 @@ public class DoctorService {
         doctorRepository.deleteDoctorByLastName(lastName);
     }
 
-   /* public List<Doctor> showDoctorsWithSpecialization(String specialization){
-
-            return doctorRepository.findAll().stream()
-                    .filter(doctor -> doctor.getSpecialization().getName().equalsIgnoreCase(specialization))
-                    .collect(Collectors.toList());
-
-    }
-
-    public List<Doctor> showAllDoctorsBySpecialization(Specialization specialization){
+   public List<Doctor> showDoctorsWithSpecialization(Specialization specialization){
 
 
         return doctorRepository.findDoctorsBySpecialization(specialization);
-    }*/
+
+    }
+
+
 
 
 
