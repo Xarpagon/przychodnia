@@ -9,6 +9,8 @@ import pl.sda.javapoz19.service.DoctorService;
 
 import java.util.List;
 
+import static org.springframework.http.ResponseEntity.noContent;
+
 
 @RestController
 public class DoctorController {
@@ -29,7 +31,16 @@ public class DoctorController {
         return new ResponseEntity<>(doctorService.addDoctor(doctor), HttpStatus.CREATED);
     }
 
+   /* @PostMapping(value = "/doctor/update", consumes = "application/json")
+    public void updatedDoctor(@RequestBody Doctor doctor){
+         doctorService.updateDoctor(doctor);
+    }*/
 
+    /*@DeleteMapping(value = "/doctor/delete/{lastName}")
+    public ResponseEntity<Void> deletedDoctor(@PathVariable String lastName){
+        doctorService.deleteDoctor(lastName);
+        return noContent().build();
+    }*/
 
    /* @GetMapping(value = "/doctors/{specialization}", produces = "application/json")
     public List<Doctor> doctorsBySpecialization(@PathVariable String specialization){

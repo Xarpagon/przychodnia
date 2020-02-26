@@ -42,8 +42,8 @@ public class AppointmentService {
 
     public ReservedAppointmentDto toDto(Appointment appointment){
 
-        String doctorFullName = appointment.getDoctor().getFullName();
-        String patientFullName = appointment.getPatient().getFullName();
+        String doctorFullName = appointment.getDoctor().getFirstName() + " " + appointment.getDoctor().getLastName();
+        String patientFullName = appointment.getPatient().getFirstName() + " " + appointment.getPatient().getLastName();
         LocalDate appointmentDate = appointment.getAppointmentDate();
         LocalTime appointmentTime = appointment.getAppointmentTime();
         String description = appointment.getDescription();
@@ -104,6 +104,8 @@ public class AppointmentService {
         return doctorRepository.findDoctorById(dtoDoctorId);
 
     }
+
+
 
 
 

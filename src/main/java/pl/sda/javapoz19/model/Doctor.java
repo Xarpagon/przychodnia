@@ -30,10 +30,6 @@ public class Doctor {
     private String emailAddress;
 
 
-    public String getFullName(){
-        return firstName + " " + lastName;
-    }
-
     public Doctor() {
     }
 
@@ -47,6 +43,8 @@ public class Doctor {
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
     }
+
+
 
     public Long getId() {
         return id;
