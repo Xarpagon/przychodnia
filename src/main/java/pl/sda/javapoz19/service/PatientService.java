@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import pl.sda.javapoz19.exceptions.DuplicatedUserNameException;
 import pl.sda.javapoz19.model.Patient;
 import pl.sda.javapoz19.repository.PatientRepository;
+import pl.sda.javapoz19.model.Appointment;
+import pl.sda.javapoz19.repository.AppointmentRepository;
 
 import java.util.List;
 
@@ -37,4 +39,14 @@ public class PatientService {
    {return patientRepository.deletePatientById(Id);}
 
 
+    private final AppointmentRepository appointmentRepository;
+
+
+    public PatientService(AppointmentRepository appointmentRepository) {
+        this.appointmentRepository = appointmentRepository;
+    }
+
+    public List<Appointment> showAvailableAppointmentsByDoctorId(Long id){
+        return appointmentRepository.findAppointmentsByDoctorIdAndPatientIsNull(id);
+    }
 }

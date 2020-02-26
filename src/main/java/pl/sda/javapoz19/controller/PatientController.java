@@ -7,10 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import pl.sda.javapoz19.model.Patient;
-import pl.sda.javapoz19.service.PatientService;
 
 
 import javax.servlet.http.HttpServlet;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import pl.sda.javapoz19.model.Appointment;
+import pl.sda.javapoz19.service.PatientService;
+
 import java.util.List;
 
 @RestController
@@ -38,5 +43,8 @@ public class PatientController {
 
     }
 
-
+    @GetMapping(value = "/patient/availableAppointments/doctor/{id}", produces = "application/json")
+    public List<Appointment> showAvailableAppointmentsByDoctor(@PathVariable Long id){
+        return patientService.showAvailableAppointmentsByDoctorId(id);
+    }
 }
