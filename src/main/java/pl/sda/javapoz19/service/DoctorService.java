@@ -39,6 +39,19 @@ public class DoctorService {
         throw new DuplicatedUserNameException("User " + username + "already exists.");
     }
 
+    public void updateDoctor(Doctor doctor){
+
+        Doctor doctorToUpdate = doctorRepository.findDoctorByPesel(doctor.getPesel());
+
+        doctorRepository.delete(doctorToUpdate);
+         doctorRepository.save(doctor);
+    }
+
+    public void deleteDoctor(String lastName){
+
+        doctorRepository.deleteDoctorByLastName(lastName);
+    }
+
    /* public List<Doctor> showDoctorsWithSpecialization(String specialization){
 
             return doctorRepository.findAll().stream()

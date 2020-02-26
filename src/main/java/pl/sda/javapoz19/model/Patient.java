@@ -10,17 +10,17 @@ public class Patient {
     @GeneratedValue(generator = "patientSeq")
     @SequenceGenerator(name="patientSeq", sequenceName = "patient_Seq", allocationSize = 1)
     private Long id;
+
     private String pesel;
     private String firstName;
     private String lastName;
+
     @Embedded
     private Address address;
+
     private String email;
     private String phoneNumber;
 
-    public String getFullName(){
-        return firstName + " " + lastName;
-    }
 
     public Patient() {
     }
