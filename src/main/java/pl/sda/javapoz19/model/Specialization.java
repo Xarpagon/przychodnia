@@ -2,12 +2,19 @@ package pl.sda.javapoz19.model;
 
 public enum Specialization {
 
-    NEUROLOGIST, UROLOGIST, DERMATOLOGIST
-    , CARDIOLOGIST, ALLERGIST, ANESTHESIOLOGIST, ENDOCRINOLOGIST
-    , HEMATOLOGIST, RADIOLOGIST, PEDIATRICIAN, INTERNIST, LARYNGOLOGIST
+    NEUROLOGIST("Neurologist"), UROLOGIST("Urologist"), DERMATOLOGIST("Dermatologist")
+    , CARDIOLOGIST("Cardiologist"), ALLERGIST("Allergist"), ANESTHESIOLOGIST("Anesthesiologist"),
+    ENDOCRINOLOGIST("Endocrinologist")
+    , HEMATOLOGIST("Hematologist"), RADIOLOGIST("Radiologist")
+    , PEDIATRICIAN("Pediatrician"), INTERNIST("Internist"), LARYNGOLOGIST("Laryngologist");
 
+    private String name;
 
+    Specialization(String name) {
+        this.name = name;
+    }
 
-
-
+    public String getName() {
+        return name;
+    }
 }

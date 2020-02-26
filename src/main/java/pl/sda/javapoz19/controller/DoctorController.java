@@ -36,15 +36,15 @@ public class DoctorController {
          doctorService.updateDoctor(doctor);
     }*/
 
-    /*@DeleteMapping(value = "/doctor/delete/{lastName}")
+    @DeleteMapping(value = "/doctor/delete/{lastName}")
     public ResponseEntity<Void> deletedDoctor(@PathVariable String lastName){
         doctorService.deleteDoctor(lastName);
         return noContent().build();
-    }*/
+    }
 
-   /* @GetMapping(value = "/doctors/{specialization}", produces = "application/json")
-    public List<Doctor> doctorsBySpecialization(@PathVariable String specialization){
+   @GetMapping(value = "/doctors/{specialization}", produces = "application/json")
+    public List<Doctor> doctorsBySpecialization(@PathVariable Specialization specialization){
 
         return doctorService.showDoctorsWithSpecialization(specialization);
-    }*/
+    }
 }
