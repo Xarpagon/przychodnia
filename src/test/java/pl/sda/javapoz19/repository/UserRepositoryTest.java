@@ -1,4 +1,4 @@
-package pl.sda.spring.repository;
+package pl.sda.javapoz19.repository;
 
 
 import org.junit.jupiter.api.Test;
@@ -24,12 +24,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 public class UserRepositoryTest {
 
+
+    @Autowired
+    private UserRepository userRepository;
+
+
     private final User user = new User("user", "user");
     private final User user2 = new User("user2","user2");
     private final User admin = new User("admin", "admin");
 
-    @Autowired
-    private UserRepository userRepository;
+
 
     @Test
     public void shouldFindAllUsers() {

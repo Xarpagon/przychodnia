@@ -16,13 +16,11 @@ public class User implements UserDetails {
     @Id
     private String username;
     private String password;
-
+    private String firstName;
+    private String lastName;
 
     @ManyToOne(targetEntity = Role.class)
     private Role role;
-
-    public User(String user, String password) {
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -61,8 +59,21 @@ public class User implements UserDetails {
     public void setUsername(String username) {
         this.username = username;
     }
-    public void setPassword(String password) {
-        this.password = password;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
@@ -70,13 +81,11 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username)&&
-                Objects.equals(password, user.password);
+        return Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username,password);
+        return Objects.hash(username);
     }
-
 }
