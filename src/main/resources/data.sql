@@ -12,8 +12,8 @@ values (nextval('doctor_Seq'),'60090910099', 'Janusz', 'Nowak', 'UROLOGIST', 'Pu
 insert into ROLE (id, authority) values (nextval('role_seq'), 'USER');
 insert into ROLE (id, authority) values (nextval('role_seq'), 'ADMIN');
 
-insert INTO USER (username, password,) values ('user', '$2a$10$KvxPudrieuxpEgxw3e4yPOuYK59PgfQshx3RaVUTCpbKB82DC/0RC');
-insert INTO USER (username, password,) values ('admin', '$2a$10$IPJizmA0rxJBq9incE/PWub6B2nIDGm3z/2cIz6hAs/hgvKlQ5F9q');
+insert INTO USER (username, password, first_name, last_name, role_id) values ('user', '$2a$10$KvxPudrieuxpEgxw3e4yPOuYK59PgfQshx3RaVUTCpbKB82DC/0RC', 'Imie', 'Nazwisko', 1);
+insert INTO USER (username, password, first_name, last_name, role_id) values ('admin', '$2a$10$IPJizmA0rxJBq9incE/PWub6B2nIDGm3z/2cIz6hAs/hgvKlQ5F9q', 'Imie1', 'Nazwisko1', 2);
 
 Insert into PATIENT (id,pesel, first_Name, last_Name,street, house_number,postcode,city,country,phone_Number,email)
 values (nextval('doctor_Seq'),'9999999999', 'Kamil', 'Nowek', 'szamotulska','12', '62-090', 'Rokietnica','Poland','+48123456789','kamil.nowek@wp.pl');

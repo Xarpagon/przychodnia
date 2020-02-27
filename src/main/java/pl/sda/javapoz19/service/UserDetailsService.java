@@ -1,13 +1,10 @@
 package pl.sda.javapoz19.service;
 
-
         import org.springframework.security.core.userdetails.UserDetails;
         import org.springframework.security.core.userdetails.UsernameNotFoundException;
         import org.springframework.stereotype.Service;
         import pl.sda.javapoz19.model.User;
         import pl.sda.javapoz19.repository.UserRepository;
-
-
         import java.util.List;
 
 @Service
