@@ -6,6 +6,7 @@ import pl.sda.javapoz19.model.AppointmentDto;
 
 import pl.sda.javapoz19.model.ReservedAppointmentDto;
 import pl.sda.javapoz19.service.AppointmentService;
+import pl.sda.javapoz19.service.DoctorService;
 
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
+
 
     public AppointmentController(AppointmentService appointmentService) {
         this.appointmentService = appointmentService;
@@ -28,6 +30,11 @@ public class AppointmentController {
     public List<ReservedAppointmentDto> showReservedAppointmentsByDoctor(@PathVariable Long id){
 
         return appointmentService.fetchAllReservedAppointmentsByDoctorId(id);
+    }
+
+    @GetMapping(value = "/patient/availableAppointments/doctor/{id}", produces = "application/json")
+    public List<Appointment> showAvailableAppointmentsByDoctor(@PathVariable Long id){
+        return appointmentService.showAvailableAppointmentsByDoctorId(id);
     }
 
 

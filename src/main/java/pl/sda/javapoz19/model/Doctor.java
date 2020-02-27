@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Doctor {
@@ -29,11 +30,14 @@ public class Doctor {
     private String phoneNumber;
     private String emailAddress;
 
+    @Embedded
+    private Room room;
+
 
     public Doctor() {
     }
 
-    public Doctor(Long id, String pesel, String firstName, String lastName, Specialization specialization, Address address, String phoneNumber, String emailAddress) {
+    public Doctor(Long id, String pesel, String firstName, String lastName,Specialization specialization, Address address, String phoneNumber, String emailAddress, Room room) {
         this.id = id;
         this.pesel = pesel;
         this.firstName = firstName;
@@ -42,6 +46,8 @@ public class Doctor {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
+        this.room = room;
+
     }
 
 
@@ -110,10 +116,18 @@ public class Doctor {
         this.emailAddress = emailAddress;
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Doctor)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
         return Objects.equals(id, doctor.id) &&
                 Objects.equals(pesel, doctor.pesel) &&
@@ -122,11 +136,12 @@ public class Doctor {
                 specialization == doctor.specialization &&
                 Objects.equals(address, doctor.address) &&
                 Objects.equals(phoneNumber, doctor.phoneNumber) &&
-                Objects.equals(emailAddress, doctor.emailAddress);
+                Objects.equals(emailAddress, doctor.emailAddress) &&
+                Objects.equals(room, doctor.room);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pesel, firstName, lastName, specialization, address, phoneNumber, emailAddress);
+        return Objects.hash(id, pesel, firstName, lastName, specialization, address, phoneNumber, emailAddress, room);
     }
 }

@@ -23,7 +23,9 @@ public class PatientController {
 
     private final PatientService patientService;
 
-    public PatientController(PatientService patientService){this.patientService = patientService;}
+
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
 
     @GetMapping(value ="/patients/{pesel},{lastName}", produces ="application/json")
     public List<Patient> patientsByPeselOrLastName(@PathVariable String pesel, @PathVariable String lastName){

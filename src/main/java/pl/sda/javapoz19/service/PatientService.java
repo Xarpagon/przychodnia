@@ -7,9 +7,13 @@ import pl.sda.javapoz19.exceptions.DuplicatedUserNameException;
 import pl.sda.javapoz19.model.Patient;
 import pl.sda.javapoz19.repository.PatientRepository;
 import pl.sda.javapoz19.model.Appointment;
+import pl.sda.javapoz19.model.Doctor;
+import pl.sda.javapoz19.model.Specialization;
 import pl.sda.javapoz19.repository.AppointmentRepository;
+import pl.sda.javapoz19.repository.DoctorRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PatientService {
@@ -42,11 +46,7 @@ public class PatientService {
     private final AppointmentRepository appointmentRepository;
 
 
-    public PatientService(AppointmentRepository appointmentRepository) {
-        this.appointmentRepository = appointmentRepository;
-    }
-
-    public List<Appointment> showAvailableAppointmentsByDoctorId(Long id){
-        return appointmentRepository.findAppointmentsByDoctorIdAndPatientIsNull(id);
+    public PatientService(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
     }
 }

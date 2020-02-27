@@ -8,6 +8,7 @@ import pl.sda.javapoz19.model.Specialization;
 import pl.sda.javapoz19.repository.DoctorRepository;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -22,6 +23,12 @@ public class DoctorService {
 
     public List<Doctor> showAllDoctorsByLastName(String lastName){
         return doctorRepository.findDoctorsByLastName(lastName);
+    }
+
+    public List<Doctor> showDoctorsWithSpecialization(Specialization specialization){
+
+        return doctorRepository.findDoctorsBySpecialization(specialization);
+
     }
 
     public Long addDoctor(Doctor doctor){
@@ -54,12 +61,7 @@ public class DoctorService {
         doctorRepository.deleteDoctorByLastName(lastName);
     }
 
-   public List<Doctor> showDoctorsWithSpecialization(Specialization specialization){
 
-
-        return doctorRepository.findDoctorsBySpecialization(specialization);
-
-    }
 
 
 
