@@ -25,7 +25,5 @@ Insert into APPOINTMENT (id, doctor_id, patient_id, appointment_Date, appointmen
 Insert into APPOINTMENT (id, doctor_id, patient_id, appointment_Date, appointment_Time, description) values (nextval('appointment_Seq'), '1', '2', '2020-03-04', '10:00', 'hangover');
 
 
-
-
 commit;
 
