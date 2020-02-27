@@ -11,3 +11,4 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     List<Patient> deletePatientById(Long id);
 
 }
+
