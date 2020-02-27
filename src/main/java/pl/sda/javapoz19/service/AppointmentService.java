@@ -22,6 +22,10 @@ public class AppointmentService {
         this.doctorRepository = doctorRepository;
     }
 
+    public List<Appointment> showAvailableAppointmentsByDoctorId(Long id){
+        return appointmentRepository.findAppointmentsByDoctorIdAndPatientIsNull(id);
+    }
+
     public List<Appointment> showAllAppointmentsByDoctorId(Long id){
         return appointmentRepository.findAllByDoctorId(id);
 
@@ -60,7 +64,8 @@ public class AppointmentService {
 
     }
 
-    public List<Appointment> convertToEntitiesList(AppointmentDto aDto){
+
+   public List<Appointment> convertToEntitiesList(AppointmentDto aDto){
 
         List<Appointment> appointmentList = new ArrayList<>();
 

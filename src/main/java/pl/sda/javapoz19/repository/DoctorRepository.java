@@ -9,6 +9,7 @@ import pl.sda.javapoz19.model.Specialization;
 
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
@@ -19,8 +20,8 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
      List<Doctor> findDoctorsByLastName(String lastName);
 
-     @Query("select d From Doctor d where d.specialization = :specialization")
-     List<Doctor> findDoctorsBySpecialization(@Param("specialization") Specialization specialization);
+
+     List<Doctor> findDoctorsBySpecialization(Specialization specialization);
 
      void deleteDoctorByLastName(String lastName);
 
