@@ -1,9 +1,11 @@
 package pl.sda.javapoz19.service;
 
 import org.springframework.stereotype.Service;
+import pl.sda.javapoz19.exception.AppointmentNotFoundException;
 import pl.sda.javapoz19.model.*;
 import pl.sda.javapoz19.repository.AppointmentRepository;
 import pl.sda.javapoz19.repository.DoctorRepository;
+import pl.sda.javapoz19.repository.PatientRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,6 +19,7 @@ public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final DoctorRepository doctorRepository;
 
+
     public AppointmentService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository) {
         this.appointmentRepository = appointmentRepository;
         this.doctorRepository = doctorRepository;
@@ -24,6 +27,20 @@ public class AppointmentService {
 
     public List<Appointment> showAvailableAppointmentsByDoctorId(Long id){
         return appointmentRepository.findAppointmentsByDoctorIdAndPatientIsNull(id);
+    }
+
+    public Optional<Appointment> addArrangedAppointment(Patient patient, Appointment appointment){
+
+        Optional<Appointment>  appointmentToArrange =  showAvailableAppointmentsByDoctorId(appointment.getDoctor().getId()).stream()
+                .filter(appointment1 -> appointment1.getAppointmentTime().atDate(appointment1.getAppointmentDate()).equals(appointment.getAppointmentTime().atDate(appointment.getAppointmentDate())))
+                .findAny();
+
+            appointmentToArrange.ifPresentOrElse(appointment1 -> appointment1.setPatient(patient),
+                  () -> {throw new AppointmentNotFoundException("Appointment not available");});
+
+            appointmentRepository.save(appointmentToArrange.get());
+        return appointmentToArrange;
+
     }
 
     public List<Appointment> showAllAppointmentsByDoctorId(Long id){

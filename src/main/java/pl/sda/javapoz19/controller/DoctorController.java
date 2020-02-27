@@ -8,7 +8,6 @@ import pl.sda.javapoz19.model.Specialization;
 import pl.sda.javapoz19.service.DoctorService;
 
 import java.util.List;
-import java.util.Set;
 
 import static org.springframework.http.ResponseEntity.noContent;
 

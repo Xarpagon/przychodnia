@@ -8,6 +8,7 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     List<Patient> findAllByPeselOrLastName(String pesel, String lastName);
+    Patient findPatientById(Long id);
     List<Patient> deletePatientById(Long id);
 
 }
