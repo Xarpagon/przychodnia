@@ -21,8 +21,11 @@ public class PatientService {
     public PatientService(PatientRepository patientRepository){this.patientRepository = patientRepository;}
 
     public List<Patient> showAllPatientsByPeselOrLastName(String pesel, String lastName)
-
     {return patientRepository.findAllByPeselOrLastName(pesel,lastName);}
+
+    public Patient showPatientById(Long id){
+        return patientRepository.findPatientById(id);
+    }
 
     public Long addPatient(Patient patient){
         patientRepository.findAll().stream()
