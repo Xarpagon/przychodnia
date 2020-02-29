@@ -2,11 +2,9 @@ package pl.sda.javapoz19.repository;
 
 
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sda.javapoz19.model.User;
 import javax.transaction.Transactional;
@@ -18,14 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserRepositoryTest {
 
-    private final User user = new User("user", "user", "John", "Example", "adres");
-    private final User user2 = new User("user2", "user2", "Johny", "Beer", "adres");
-    private final User admin = new User("admin", "admin", "John", "Admin", "user");
+    private final User user = new User("user", "user");
+    private final User user2 = new User("user2", "user2");
+    private final User admin = new User("admin", "admin");
 
     @Autowired
     private UserRepository userRepository;
 
-    @org.junit.Test
+    @Test
     public void shouldFindAllUsers() {
         //when
         List<User> actual = userRepository.findAll();
@@ -34,7 +32,7 @@ public class UserRepositoryTest {
         assertThat(actual).containsExactlyInAnyOrder(user, user2, admin);
     }
 
-    @org.junit.Test
+    @Test
     public void shouldFindUserById() {
         //when
         Optional<User> actual = userRepository.findById("user");
@@ -43,47 +41,20 @@ public class UserRepositoryTest {
         assertThat(actual.get()).isEqualTo(user);
     }
 
-    @org.junit.Test
-    public void shouldFindUsersWithFirstNameEqualToJohn() {
+    @Test
+    public void shouldFindUserWithUserNameEqualToUser2() {
         //when
-        List<User> actual = userRepository.findByFirstName("John");
+        List<User> actual = userRepository.findByUsername("use2");
 
         //then
         assertThat(actual).containsExactlyInAnyOrder(user, admin);
     }
 
-    @org.junit.Test
-    public void shouldFindJohnExampleOnly() {
-        //when
-        List<User> actual = userRepository.findByFirstNameAndLastName("John", "Example");
-
-        //then
-        assertThat(actual).containsExactlyInAnyOrder(user);
-    }
-
-    @org.junit.Test
-    public void shouldFindOnlyJohnyBeer() {
-        //when
-        List<User> actual = userRepository.searchByLastName("Beer");
-
-        //then
-        assertThat(actual).containsExactlyInAnyOrder(user2);
-    }
-
-    @org.junit.Test
-    public void shouldFindAllUsersBySearchByAddress() {
-        //when
-        List<User> actual = userRepository.searchByAddress("adres");
-
-        //then
-        assertThat(actual).containsExactlyInAnyOrder(user, user2, admin);
-    }
-
-    @org.junit.Test
+    @Test
     @Transactional
     public void shouldAddNewUserToDatabase() {
         //given
-        User newUser = new User("newUser", "newUser", "name", "lastName", "adres");
+        User newUser = new User("newUser", "newUser");
 
         //when
         userRepository.save(newUser);
@@ -96,7 +67,7 @@ public class UserRepositoryTest {
     @Transactional
     public void shouldUpdateUser() {
         //given
-        User updatedUser = new User("user", "password", "John", "Example", "adres");
+        User updatedUser = new User("user", "password");
 
         //when
         userRepository.save(updatedUser);

@@ -15,8 +15,6 @@ public class User implements UserDetails {
     @Id
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
 
     @ManyToOne(targetEntity = Role.class)
     private Role role;
@@ -25,11 +23,9 @@ public class User implements UserDetails {
 
     }
 
-    public User(String username, String password, String firstName, String lastName, String address) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     @Override
@@ -70,22 +66,6 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -93,13 +73,11 @@ public class User implements UserDetails {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName);
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, firstName, lastName);
+        return Objects.hash(username, password);
     }
 }
