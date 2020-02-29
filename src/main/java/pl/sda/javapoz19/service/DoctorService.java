@@ -1,6 +1,7 @@
 package pl.sda.javapoz19.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.javapoz19.exception.DuplicatedUserNameException;
 import pl.sda.javapoz19.model.Doctor;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Transactional
 public class DoctorService {
 
     private final DoctorRepository doctorRepository;
@@ -23,6 +25,10 @@ public class DoctorService {
 
     public List<Doctor> showAllDoctorsByLastName(String lastName){
         return doctorRepository.findDoctorsByLastName(lastName);
+    }
+
+    public Doctor showDoctorByPesel(String pesel){
+        return doctorRepository.findDoctorByPesel(pesel);
     }
 
     public List<Doctor> showDoctorsWithSpecialization(Specialization specialization){
@@ -48,12 +54,14 @@ public class DoctorService {
         throw new DuplicatedUserNameException("User " + username + "already exists.");
     }
 
-    public void updateDoctor(Doctor doctor){
+    public Doctor updateDoctorDetails(Doctor doctor){
 
         Doctor doctorToUpdate = doctorRepository.findDoctorByPesel(doctor.getPesel());
 
-        doctorRepository.delete(doctorToUpdate);
+        doctorRepository.deleteDoctorByPesel(doctorToUpdate.getPesel());
          doctorRepository.save(doctor);
+
+         return doctor;
     }
 
     public void deleteDoctor(String lastName){
