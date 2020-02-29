@@ -9,9 +9,13 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, String> {
 
-    List<User> findByUserName(String firstName);
+    List<User> findByFirstName(String firstName);
 
-    @Query("select u from User u where u.username = :username")
+    List<User> findByFirstNameAndLastName(String firstName, String lastName);
 
-    List<User> searchByUserName(@Param("userName") String userName);
+    @Query("select u from User u where u.lastName = :lastName")
+    List<User> searchByLastName(@Param("lastName") String lastName);
+
+    @Query(value = "SELECT * FROM USER WHERE ADDRESS = :address", nativeQuery = true)
+    List<User> searchByAddress(@Param("address") String address);
 }
