@@ -23,7 +23,10 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
      List<Doctor> findDoctorsBySpecialization(Specialization specialization);
 
+     void deleteDoctorByPesel(String pesel);
+
      void deleteDoctorByLastName(String lastName);
+
 
 
 

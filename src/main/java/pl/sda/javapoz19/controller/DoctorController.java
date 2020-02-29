@@ -37,10 +37,10 @@ public class DoctorController {
         return new ResponseEntity<>(doctorService.addDoctor(doctor), HttpStatus.CREATED);
     }
 
-   /* @PostMapping(value = "/doctor/update", consumes = "application/json")
-    public void updatedDoctor(@RequestBody Doctor doctor){
-         doctorService.updateDoctor(doctor);
-    }*/
+    @PostMapping(value = "/doctor/update", consumes = "application/json")
+    public ResponseEntity<Doctor> updatedDoctor(@RequestBody Doctor doctor){
+         return new ResponseEntity<>(doctorService.updateDoctorDetails(doctor),HttpStatus.CREATED);
+    }
 
     @DeleteMapping(value = "/doctor/delete/{lastName}")
     public ResponseEntity<Void> deletedDoctor(@PathVariable String lastName){

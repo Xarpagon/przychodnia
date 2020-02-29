@@ -17,7 +17,6 @@ public class Doctor {
 
     private String pesel;
 
-
     private String firstName;
     private String lastName;
 
@@ -37,8 +36,8 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(Long id, String pesel, String firstName, String lastName,Specialization specialization, Address address, String phoneNumber, String emailAddress, Room room) {
-        this.id = id;
+    public Doctor( String pesel, String firstName, String lastName,Specialization specialization, Address address, String phoneNumber, String emailAddress, Room room) {
+
         this.pesel = pesel;
         this.firstName = firstName;
         this.lastName = lastName;

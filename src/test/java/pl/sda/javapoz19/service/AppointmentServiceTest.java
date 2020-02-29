@@ -28,7 +28,7 @@ class AppointmentServiceTest {
     private PatientService patientService;
 
 
-    @Test
+   /* @Test
     public void convertToEntitiesListShouldReturnSize4ForWorkingHours14To16() {
 
         //given
@@ -71,7 +71,7 @@ class AppointmentServiceTest {
     //then
         Assert.assertEquals(expectedAppointmentTime,actualAppointmentTime);
     }
-
+*/
     @Test
     public void addArrangedAppointmentShouldReturnPatientId1ForArrangedAppointmentWithPatientNull(){
 
