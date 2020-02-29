@@ -29,14 +29,14 @@ public class PatientServiceTest {
         Assert.assertEquals(expected,actual.size());
     }
 
-    @Test
-    public void deletePatientsById(){
-       // given
-        int expected = 1;
-        //when
-        List<Patient> actual = sut.deletePatientById();
-        //then
-        Assert.assertEquals(expected,actual.size());
-    }
+//    @Test
+//    public void deletePatientsById(){
+//       // given
+//        int expected = 1;
+//        //when
+//        List<Patient> actual = sut.deletePatientById();
+//        //then
+//        Assert.assertEquals(expected,actual.size());
+//    }
 
 }

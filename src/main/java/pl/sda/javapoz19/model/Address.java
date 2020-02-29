@@ -1,13 +1,10 @@
 package pl.sda.javapoz19.model;
 
-
-
 import javax.persistence.*;
 import java.util.Objects;
 
 @Embeddable
 public class Address {
-
 
     private String street;
     private String houseNumber;
@@ -25,8 +22,6 @@ public class Address {
         this.city = city;
         this.country=country;
     }
-
-
 
     public String getHouseNumber() {
         return houseNumber;
