@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PrzychodniaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PrzychodniaApplication.class,args);
+        SpringApplication.run(PrzychodniaApplication.class, args);
     }
 
 
