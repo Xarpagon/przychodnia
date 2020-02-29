@@ -66,7 +66,7 @@ public class DoctorService {
 
     public void deleteDoctor(String lastName){
 
-        doctorRepository.deleteDoctorByLastName(lastName);
+        doctorRepository.deleteDoctorByPesel(lastName);
     }
 
 

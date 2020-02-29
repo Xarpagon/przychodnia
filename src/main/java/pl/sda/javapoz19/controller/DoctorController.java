@@ -42,9 +42,10 @@ public class DoctorController {
          return new ResponseEntity<>(doctorService.updateDoctorDetails(doctor),HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "/doctor/delete/{lastName}")
-    public ResponseEntity<Void> deletedDoctor(@PathVariable String lastName){
-        doctorService.deleteDoctor(lastName);
+    @DeleteMapping(value = "/doctor/delete/{pesel}")
+    public ResponseEntity<Void> removeDoctor(@PathVariable String pesel){
+
+        doctorService.deleteDoctor(pesel);
         return noContent().build();
     }
 
