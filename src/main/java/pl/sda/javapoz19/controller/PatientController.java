@@ -1,12 +1,9 @@
 package pl.sda.javapoz19.controller;
 
-import org.apache.coyote.Response;
-import org.hibernate.sql.Delete;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.javapoz19.model.Patient;
-import javax.servlet.http.HttpServlet;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

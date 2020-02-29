@@ -1,21 +1,11 @@
 package pl.sda.javapoz19.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import pl.sda.javapoz19.exceptions.DuplicatedUserNameException;
 import pl.sda.javapoz19.model.Patient;
 import pl.sda.javapoz19.repository.PatientRepository;
-import pl.sda.javapoz19.model.Appointment;
-import pl.sda.javapoz19.model.Doctor;
-import pl.sda.javapoz19.model.Patient;
-import pl.sda.javapoz19.model.Specialization;
+import pl.sda.javapoz19.exception.DuplicatedUserNameException;
 import pl.sda.javapoz19.repository.AppointmentRepository;
-import pl.sda.javapoz19.repository.DoctorRepository;
-import pl.sda.javapoz19.repository.PatientRepository;
-
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class PatientService {
@@ -47,9 +37,7 @@ public class PatientService {
    public List<Patient>deletePatientById(Long Id)
    {return patientRepository.deletePatientById(Id);}
 
-
     private final AppointmentRepository appointmentRepository;
-
 
     public PatientService(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
@@ -74,6 +62,4 @@ public class PatientService {
     }
     public List<Patient>deletePatientById(Long Id)
     {return patientRepository.deletePatientById(Id);}
-
-
 }
