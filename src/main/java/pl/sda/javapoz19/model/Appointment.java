@@ -1,12 +1,8 @@
 package pl.sda.javapoz19.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Entity
 public class Appointment {
@@ -19,29 +15,27 @@ public class Appointment {
     @ManyToOne(targetEntity = Doctor.class)
     private Doctor doctor;
 
-    @ManyToOne(targetEntity = Patient.class)
-    private Patient patient;
+    @ManyToOne(targetEntity = User.class)
+    private User patient;
 
-    private LocalDate appointmentDate;
-    private LocalTime appointmentTime;
+    private LocalDateTime appointmentDate;
+
     private String description;
 
 
     public Appointment() {
     }
 
-    public Appointment(Doctor doctor, LocalDate appointmentDate, LocalTime appointmentTime) {
+    public Appointment(Doctor doctor, LocalDateTime appointmentDate) {
         this.doctor = doctor;
         this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
     }
 
-    public Appointment(Long id, Doctor doctor, Patient patient, LocalDate appointmentDate, LocalTime appointmentTime, String description) {
+    public Appointment(Long id, Doctor doctor, User user, LocalDateTime appointmentDate, String description) {
         this.id = id;
         this.doctor = doctor;
-        this.patient = patient;
+        this.patient = user;
         this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
         this.description = description;
     }
 
@@ -61,28 +55,20 @@ public class Appointment {
         this.doctor = doctor;
     }
 
-    public Patient getPatient() {
+    public User getPatient() {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatient(User user) {
+        this.patient = user;
     }
 
-    public LocalDate getAppointmentDate() {
+    public LocalDateTime getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(LocalDate appointmentDate) {
+    public void setAppointmentDate(LocalDateTime appointmentDate) {
         this.appointmentDate = appointmentDate;
-    }
-
-    public LocalTime getAppointmentTime() {
-        return appointmentTime;
-    }
-
-    public void setAppointmentTime(LocalTime appointmentTime) {
-        this.appointmentTime = appointmentTime;
     }
 
     public String getDescription() {
@@ -102,12 +88,11 @@ public class Appointment {
                 Objects.equals(doctor, that.doctor) &&
                 Objects.equals(patient, that.patient) &&
                 Objects.equals(appointmentDate, that.appointmentDate) &&
-                Objects.equals(appointmentTime, that.appointmentTime) &&
                 Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, doctor, patient, appointmentDate, appointmentTime, description);
+        return Objects.hash(id, doctor, patient, appointmentDate, description);
     }
 }

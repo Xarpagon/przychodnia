@@ -5,9 +5,8 @@ import pl.sda.javapoz19.exception.AppointmentNotFoundException;
 import pl.sda.javapoz19.model.*;
 import pl.sda.javapoz19.repository.AppointmentRepository;
 import pl.sda.javapoz19.repository.DoctorRepository;
-import pl.sda.javapoz19.repository.PatientRepository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import java.util.*;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class AppointmentService {
 
-    private final AppointmentRepository appointmentRepository;
+   /* private final AppointmentRepository appointmentRepository;
     private final DoctorRepository doctorRepository;
 
 
@@ -32,7 +31,7 @@ public class AppointmentService {
     public Optional<Appointment> addArrangedAppointment(Patient patient, Appointment appointment){
 
         Optional<Appointment>  appointmentToArrange =  showAvailableAppointmentsByDoctorId(appointment.getDoctor().getId()).stream()
-                .filter(appointment1 -> appointment1.getAppointmentTime().atDate(appointment1.getAppointmentDate()).equals(appointment.getAppointmentTime().atDate(appointment.getAppointmentDate())))
+                .filter(appointment1 -> appointment1.getAppointmentDate().equals(appointment.getAppointmentDate()))
                 .findAny();
 
             appointmentToArrange.ifPresentOrElse(appointment1 -> appointment1.setPatient(patient),
@@ -65,11 +64,10 @@ public class AppointmentService {
 
         String doctorFullName = appointment.getDoctor().getFirstName() + " " + appointment.getDoctor().getLastName();
         String patientFullName = appointment.getPatient().getFirstName() + " " + appointment.getPatient().getLastName();
-        LocalDate appointmentDate = appointment.getAppointmentDate();
-        LocalTime appointmentTime = appointment.getAppointmentTime();
+        LocalDateTime appointmentDate = appointment.getAppointmentDate();
         String description = appointment.getDescription();
 
-        return new ReservedAppointmentDto(doctorFullName, patientFullName, appointmentDate,appointmentTime, description);
+        return new ReservedAppointmentDto(doctorFullName, patientFullName, appointmentDate, description);
     }
 
 
@@ -94,27 +92,19 @@ public class AppointmentService {
 
         LocalTime appointmentTime = startTime;
 
-        Long id = 1l;
+
 
            while(appointmentTime.isBefore(endTime)){
 
                Appointment appointment = new Appointment();
 
-
-               Long dtoDoctorId = aDto.getDoctorId();
-               doctorRepository.findDoctorById(dtoDoctorId);
-
                appointment.setDoctor(getDoctorById(aDto));
                appointment.setAppointmentDate(aDto.getDate());
-               appointment.setAppointmentTime(appointmentTime);
-
-
 
                appointmentList.add(appointment);
 
                appointmentTime = appointmentTime.plusMinutes(duration);
 
-               id++;
 
            }
 
@@ -125,7 +115,7 @@ public class AppointmentService {
         Long dtoDoctorId = aDto.getDoctorId();
         return doctorRepository.findDoctorById(dtoDoctorId);
 
-    }
+    }*/
 
 
 

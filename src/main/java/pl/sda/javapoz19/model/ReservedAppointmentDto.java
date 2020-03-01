@@ -1,7 +1,9 @@
 package pl.sda.javapoz19.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class ReservedAppointmentDto {
 
@@ -9,17 +11,14 @@ public class ReservedAppointmentDto {
 
     private  String patientFullName;
 
-    private  LocalDate appointmentDate;
-
-    private  LocalTime appointmentTime;
+    private LocalDateTime appointmentDate;
 
     private  String description;
 
-    public ReservedAppointmentDto(String doctorFullName, String patientFullName, LocalDate appointmentDate, LocalTime appointmentTime, String description) {
+    public ReservedAppointmentDto(String doctorFullName, String patientFullName, LocalDateTime appointmentDate, String description) {
         this.doctorFullName = doctorFullName;
         this.patientFullName = patientFullName;
         this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
         this.description = description;
     }
 
@@ -31,12 +30,8 @@ public class ReservedAppointmentDto {
         return patientFullName;
     }
 
-    public LocalDate getAppointmentDate() {
+    public LocalDateTime getAppointmentDate() {
         return appointmentDate;
-    }
-
-    public LocalTime getAppointmentTime() {
-        return appointmentTime;
     }
 
     public String getDescription() {
@@ -51,15 +46,27 @@ public class ReservedAppointmentDto {
         this.patientFullName = patientFullName;
     }
 
-    public void setAppointmentDate(LocalDate appointmentDate) {
+    public void setAppointmentDate(LocalDateTime appointmentDate) {
         this.appointmentDate = appointmentDate;
-    }
-
-    public void setAppointmentTime(LocalTime appointmentTime) {
-        this.appointmentTime = appointmentTime;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReservedAppointmentDto that = (ReservedAppointmentDto) o;
+        return Objects.equals(doctorFullName, that.doctorFullName) &&
+                Objects.equals(patientFullName, that.patientFullName) &&
+                Objects.equals(appointmentDate, that.appointmentDate) &&
+                Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(doctorFullName, patientFullName, appointmentDate, description);
     }
 }

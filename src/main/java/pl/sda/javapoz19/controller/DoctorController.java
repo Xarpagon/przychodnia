@@ -15,7 +15,7 @@ import static org.springframework.http.ResponseEntity.noContent;
 @RestController
 public class DoctorController {
 
-    private final DoctorService doctorService;
+   /* private final DoctorService doctorService;
 
     public DoctorController(DoctorService doctorService) {
         this.doctorService = doctorService;
@@ -37,7 +37,7 @@ public class DoctorController {
         return new ResponseEntity<>(doctorService.addDoctor(doctor), HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/doctor/update", consumes = "application/json")
+    @PutMapping(value = "/doctor/update", consumes = "application/json")
     public ResponseEntity<Doctor> updatedDoctor(@RequestBody Doctor doctor){
          return new ResponseEntity<>(doctorService.updateDoctorDetails(doctor),HttpStatus.CREATED);
     }
@@ -47,7 +47,7 @@ public class DoctorController {
 
         doctorService.deleteDoctor(pesel);
         return noContent().build();
-    }
+    }*/
 
 
 }

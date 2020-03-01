@@ -3,33 +3,31 @@ package pl.sda.javapoz19.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.javapoz19.model.Patient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pl.sda.javapoz19.model.Appointment;
-import pl.sda.javapoz19.service.PatientService;
+import pl.sda.javapoz19.model.User;
+import pl.sda.javapoz19.service.UserService;
 
 import java.util.List;
 
 
 @RestController
-public class PatientController {
+public class UserController {
 
-    private final PatientService patientService;
-
-
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
-
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping(value ="/patients/{pesel},{lastName}", produces ="application/json")
-    public List<Patient> patientsByPeselOrLastName(@PathVariable String pesel, @PathVariable String lastName){
-        return patientService.showAllPatientsByPeselOrLastName(pesel,lastName);
+    private final UserService userService;
+
+
+    @GetMapping(value ="/patient", produces ="application/json")
+    public User userByPeselOrLastName(@RequestParam(required = false) String pesel,@RequestParam(required = false) String lastName){
+        return userService.showUserByPeselOrLastName(pesel,lastName);
     }
 
-    @GetMapping(value = "/patients/patient/{id}", produces = "application/json")
+   /* @GetMapping(value = "/patients/patient/{id}", produces = "application/json")
     public Patient patientById(@PathVariable Long id){
         return patientService.showPatientById(id);
     }
@@ -45,9 +43,6 @@ public class PatientController {
         patientService.deletePatientById(id);
         return new ResponseEntity<Long>(HttpStatus.OK);
 
-    }
-    @GetMapping(value = "/patient/availableAppointments/doctor/{id}", produces = "application/json")
-    public List<Appointment> showAvailableAppointmentsByDoctor(@PathVariable Long id){
-        return patientService.showAvailableAppointmentsByDoctorId(id);
-    }
+    }*/
+
 }

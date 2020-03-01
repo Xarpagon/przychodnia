@@ -1,15 +1,16 @@
 package pl.sda.javapoz19.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
 public class AppointmentDto {
 
 
-    private Long  doctor_id;
+    private Long  doctorId;
 
-    private LocalDate date;
+    private LocalDateTime date;
 
     private LocalTime from;
 
@@ -17,8 +18,8 @@ public class AppointmentDto {
 
     private int duration;
 
-    public AppointmentDto(Long doctor_id, LocalDate date, LocalTime from, LocalTime upTill, int duration) {
-        this.doctor_id=doctor_id;
+    public AppointmentDto(Long doctorId, LocalDateTime date, LocalTime from, LocalTime upTill, int duration) {
+        this.doctorId=doctorId;
         this.date = date;
         this.from = from;
         this.upTill = upTill;
@@ -26,18 +27,18 @@ public class AppointmentDto {
     }
 
     public Long getDoctorId() {
-        return doctor_id;
+        return doctorId;
     }
 
     public void setDoctorId(Long doctor_id) {
-        this.doctor_id = doctor_id;
+        this.doctorId = doctorId;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -71,7 +72,7 @@ public class AppointmentDto {
         if (o == null || getClass() != o.getClass()) return false;
         AppointmentDto that = (AppointmentDto) o;
         return duration == that.duration &&
-                Objects.equals(doctor_id, that.doctor_id) &&
+                Objects.equals(doctorId, that.doctorId) &&
                 Objects.equals(date, that.date) &&
                 Objects.equals(from, that.from) &&
                 Objects.equals(upTill, that.upTill);
@@ -79,6 +80,6 @@ public class AppointmentDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(doctor_id, date, from, upTill, duration);
+        return Objects.hash(doctorId, date, from, upTill, duration);
     }
 }

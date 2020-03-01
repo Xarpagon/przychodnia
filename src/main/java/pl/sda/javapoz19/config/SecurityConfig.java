@@ -25,10 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/admin").hasAuthority("ADMIN")
-                .antMatchers("/**").authenticated()
+                .antMatchers("/**").permitAll()
                 .and()
                 .formLogin().loginPage("/login")
                 .usernameParameter("username")
@@ -59,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
     public static void main(String... args) {
-        System.out.println(new BCryptPasswordEncoder().encode("super haslo"));
+        System.out.println(new BCryptPasswordEncoder().encode("mdjdjdj"));
     }
 
 }

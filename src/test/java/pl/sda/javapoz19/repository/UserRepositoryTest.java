@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserRepositoryTest {
 
-    private final User user = new User("user", "user");
+   /* private final User user = new User("user", "user");
     private final User user2 = new User("user2", "user2");
     private final User admin = new User("admin", "admin");
 
@@ -75,5 +75,5 @@ public class UserRepositoryTest {
         //then
         assertThat(userRepository.count()).isEqualTo(3);
         assertThat(userRepository.findById("user").get()).isEqualTo(updatedUser);
-    }
+    }*/
 }

@@ -4,10 +4,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.sda.javapoz19.model.Appointment;
 import pl.sda.javapoz19.model.AppointmentDto;
 
-import pl.sda.javapoz19.model.Patient;
 import pl.sda.javapoz19.model.ReservedAppointmentDto;
 import pl.sda.javapoz19.service.AppointmentService;
-import pl.sda.javapoz19.service.DoctorService;
 
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.Optional;
 @RestController
 public class AppointmentController {
 
-    private final AppointmentService appointmentService;
+    /*private final AppointmentService appointmentService;
 
 
     public AppointmentController(AppointmentService appointmentService) {
@@ -50,7 +48,7 @@ public class AppointmentController {
     public List<Appointment> addAppointmentsScheduleByDoctor(@RequestBody AppointmentDto appointmentDto){
         return appointmentService.addAppointments(appointmentDto);
 
-    }
+    }*/
 
 
 

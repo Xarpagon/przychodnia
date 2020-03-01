@@ -22,7 +22,7 @@ import static pl.sda.javapoz19.model.Specialization.UROLOGIST;
 @ExtendWith(SpringExtension.class)
 public class DoctorServiceTest {
 
-    @Autowired
+   /* @Autowired
     private DoctorService sut;
 
     @Test
@@ -67,7 +67,7 @@ public class DoctorServiceTest {
 
     }*/
 
-   @Test
+  /* @Test
     public void addDoctorShouldReturnDoctorId1ForAddedDoctor(){
 
        //given

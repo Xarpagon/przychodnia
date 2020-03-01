@@ -12,22 +12,14 @@ public class Doctor {
 
     @Id
     @GeneratedValue(generator = "doctorSeq")
-    @SequenceGenerator(name = "doctorSeq", sequenceName = "doctor_Seq", allocationSize = 1)
-    private Long id ;
+    @SequenceGenerator(name = "doctorSeq", sequenceName = "doctor_seq", allocationSize = 1)
+    private Long id;
 
-    private String pesel;
-
-    private String firstName;
-    private String lastName;
+    @OneToOne(targetEntity = User.class)
+    private User user;
 
     @Enumerated(EnumType.STRING)
     private Specialization specialization;
-
-    @Embedded
-    private Address address;
-
-    private String phoneNumber;
-    private String emailAddress;
 
     @Embedded
     private Room room;
@@ -36,51 +28,26 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor( String pesel, String firstName, String lastName,Specialization specialization, Address address, String phoneNumber, String emailAddress, Room room) {
-
-        this.pesel = pesel;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.specialization = specialization;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
-        this.room = room;
-
+    public Doctor(User user, Specialization specialization, Room room){
+        this.user=user;
+        this.specialization=specialization;
+        this.room=room;
     }
-
-
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long doctorId) {
+        this.id = doctorId;
     }
 
-    public String getPesel() {
-        return pesel;
+    public User getUser() {
+        return user;
     }
 
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Specialization getSpecialization() {
@@ -89,30 +56,6 @@ public class Doctor {
 
     public void setSpecialization(Specialization specialization) {
         this.specialization = specialization;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
     }
 
     public Room getRoom() {
@@ -129,18 +72,13 @@ public class Doctor {
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
         return Objects.equals(id, doctor.id) &&
-                Objects.equals(pesel, doctor.pesel) &&
-                Objects.equals(firstName, doctor.firstName) &&
-                Objects.equals(lastName, doctor.lastName) &&
+                Objects.equals(user, doctor.user) &&
                 specialization == doctor.specialization &&
-                Objects.equals(address, doctor.address) &&
-                Objects.equals(phoneNumber, doctor.phoneNumber) &&
-                Objects.equals(emailAddress, doctor.emailAddress) &&
                 Objects.equals(room, doctor.room);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pesel, firstName, lastName, specialization, address, phoneNumber, emailAddress, room);
+        return Objects.hash(id, user, specialization, room);
     }
 }

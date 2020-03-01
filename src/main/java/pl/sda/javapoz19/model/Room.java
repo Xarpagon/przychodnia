@@ -6,6 +6,7 @@ import java.util.Objects;
 @Embeddable
 public class Room {
 
+
     private String floorNumber;
     private String doorNumber;
 

@@ -21,7 +21,7 @@ import java.util.Optional;
 @ExtendWith(SpringExtension.class)
 class AppointmentServiceTest {
 
-    @Autowired
+   /* @Autowired
     private AppointmentService appointmentService;
 
     @Autowired
@@ -72,7 +72,7 @@ class AppointmentServiceTest {
         Assert.assertEquals(expectedAppointmentTime,actualAppointmentTime);
     }
 */
-    @Test
+   /* @Test
     public void addArrangedAppointmentShouldReturnPatientId1ForArrangedAppointmentWithPatientNull(){
 
         //given
@@ -87,7 +87,7 @@ class AppointmentServiceTest {
                 LocalTime.of(14,30), null);*/
 
 
-        Patient patient = patientService.showPatientById(1l);
+      /*  Patient patient = patientService.showPatientById(1l);
         Appointment appointment = appointmentService.showAvailableAppointmentsByDoctorId(1l).get(0);
         Long expectedPatientId = 1l;
         //when
@@ -97,5 +97,5 @@ class AppointmentServiceTest {
         //then
         Assert.assertEquals(expectedPatientId,actualAppointment.get().getPatient().getId());
 
-    }
+    }*/
 }

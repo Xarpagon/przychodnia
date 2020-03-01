@@ -2,9 +2,8 @@ package pl.sda.javapoz19.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
@@ -16,19 +15,43 @@ public class User implements UserDetails {
     private String username;
     private String password;
 
+
     @ManyToOne(targetEntity = Role.class)
     private Role role;
 
-    public User () {
+    private String pesel;
 
+    private String firstName;
+
+    private String lastName;
+
+    @Embedded
+    private Address address;
+
+    private String phoneNumber;
+
+    private String emailAddress;
+
+
+    public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, Role role, String pesel, String firstName, String lastName,
+                Address address, String phoneNumber, String emailAddress){
         this.username = username;
-        this.password = password;
+        this.password=password;
+        this.role=role;
+        this.pesel=pesel;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.address=address;
+        this.phoneNumber=phoneNumber;
+        this.emailAddress=emailAddress;
     }
 
-    @Override
+
+
+   @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(role);
     }
@@ -66,6 +89,65 @@ public class User implements UserDetails {
         this.username = username;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return emailAddress;
+    }
+
+    public void setEmail(String email) {
+        this.emailAddress = emailAddress;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -73,11 +155,18 @@ public class User implements UserDetails {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password);
+                Objects.equals(password, user.password) &&
+                Objects.equals(role, user.role) &&
+                Objects.equals(pesel, user.pesel) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(emailAddress, user.emailAddress);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password);
+        return Objects.hash(username, password, role, pesel, firstName, lastName, address, phoneNumber, emailAddress);
     }
 }
