@@ -4,12 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RestController;
 import pl.sda.javapoz19.model.User;
 import pl.sda.javapoz19.service.UserService;
 
-import java.util.List;
+
 
 
 @RestController
@@ -27,11 +27,11 @@ public class UserController {
         return userService.showUserByPeselOrLastName(pesel,lastName);
     }
 
-   /* @GetMapping(value = "/patients/patient/{id}", produces = "application/json")
-    public Patient patientById(@PathVariable Long id){
-        return patientService.showPatientById(id);
+    @GetMapping(value = "/patient/{username}", produces = "application/json")
+    public User patientById(@PathVariable String username){
+        return userService.showUserByUsername(username);
     }
-
+/*
     @PostMapping(value = "/patients/add", consumes = "application/json")
     public ResponseEntity<Long> submitPatient(@RequestBody Patient patient){
         return new ResponseEntity<>(patientService.addPatient(patient), HttpStatus.CREATED);

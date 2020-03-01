@@ -5,7 +5,7 @@ import pl.sda.javapoz19.exception.DuplicatedUserNameException;
 import pl.sda.javapoz19.model.User;
 import pl.sda.javapoz19.repository.UserRepository;
 
-import java.util.List;
+
 
 @Service
 public class UserService {
@@ -21,10 +21,10 @@ public class UserService {
     public User showUserByPeselOrLastName(String pesel, String lastName)
     {return userRepository.findByPeselAndLastName(pesel,lastName);}
 
-    /*public Patient showPatientById(Long id){
-        return patientRepository.findPatientById(id);
+    public User showUserByUsername(String username){
+        return userRepository.findByUsername(username);
     }
-
+/*
     public Long addPatient(Patient patient){
         patientRepository.findAll().stream()
                 .filter(presentPatient -> presentPatient.getPesel().equals(patient.getPesel()))
