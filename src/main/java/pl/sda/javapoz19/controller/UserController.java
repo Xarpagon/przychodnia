@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.sda.javapoz19.model.User;
 import pl.sda.javapoz19.service.UserService;
 
-
+import static org.springframework.http.ResponseEntity.noContent;
 
 
 @RestController
@@ -22,27 +22,31 @@ public class UserController {
     private final UserService userService;
 
 
-    @GetMapping(value ="/patient", produces ="application/json")
+    @GetMapping(value ="/user", produces ="application/json")
     public User userByPeselOrLastName(@RequestParam(required = false) String pesel,@RequestParam(required = false) String lastName){
         return userService.showUserByPeselOrLastName(pesel,lastName);
     }
 
-    @GetMapping(value = "/patient/{username}", produces = "application/json")
-    public User patientById(@PathVariable String username){
+    @GetMapping(value = "/user/{username}", produces = "application/json")
+    public User showUserByUsername(@PathVariable String username){
         return userService.showUserByUsername(username);
     }
-/*
-    @PostMapping(value = "/patients/add", consumes = "application/json")
-    public ResponseEntity<Long> submitPatient(@RequestBody Patient patient){
-        return new ResponseEntity<>(patientService.addPatient(patient), HttpStatus.CREATED);
+
+    @PostMapping(value = "/users/add", consumes = "application/json")
+    public ResponseEntity<String> submitPatient(@RequestBody User patient){
+        return new ResponseEntity<String>(userService.addUser(patient), HttpStatus.CREATED);
     }
 
 
-    @PostMapping(value ="/patients/delete/{id}", consumes = "application/json")
-    public ResponseEntity<Long>deletePatientsById(@PathVariable Long id){
-        patientService.deletePatientById(id);
-        return new ResponseEntity<Long>(HttpStatus.OK);
 
-    }*/
+
+    @DeleteMapping(value ="/user/delete/{username}")
+    public ResponseEntity<Void>deleteUserByUsername(@PathVariable String username){
+        userService.removeUserByUsername(username);
+        return noContent().build();
+
+    }
+
+
 
 }

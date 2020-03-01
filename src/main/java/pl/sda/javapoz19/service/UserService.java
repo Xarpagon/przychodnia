@@ -22,22 +22,28 @@ public class UserService {
     {return userRepository.findByPeselAndLastName(pesel,lastName);}
 
     public User showUserByUsername(String username){
-        return userRepository.findByUsername(username);
+        return userRepository.findById(username).orElse(null);
     }
-/*
-    public Long addPatient(Patient patient){
-        patientRepository.findAll().stream()
-                .filter(presentPatient -> presentPatient.getPesel().equals(patient.getPesel()))
-                .findAny()
-                .ifPresent(patient1 -> throwDuplicatedUserNameException(patient1.getPesel()));
 
-        patientRepository.save(patient);
-        return patient.getId();
+    public String addUser(User user){
+        userRepository.findAll().stream()
+                .filter(presentUser -> presentUser.getPesel().equals(user.getPesel()))
+                .findAny()
+                .ifPresent(user1 -> throwDuplicatedUserNameException(user1.getPesel()));
+
+        userRepository.save(user);
+        return user.getUsername();
     }
 
     private void throwDuplicatedUserNameException(String username) {
         throw new DuplicatedUserNameException("User " + username + "already exists.");
     }
+
+    public void removeUserByUsername(String username) {
+         userRepository.deleteById(username);
+    }
+
+    /*
     public List<Patient>deletePatientById(Long Id)
     {return patientRepository.deletePatientById(Id);}
 */

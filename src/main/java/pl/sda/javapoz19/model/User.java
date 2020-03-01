@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class User implements UserDetails {
@@ -32,12 +33,18 @@ public class User implements UserDetails {
 
     private String emailAddress;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Appointment> appointmentSet;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Doctor doctor;
+
 
     public User() {
     }
 
     public User(String username, String password, Role role, String pesel, String firstName, String lastName,
-                Address address, String phoneNumber, String emailAddress){
+                Address address, String phoneNumber, String emailAddress, Set<Appointment> appointmentSet, Set<Doctor> doctorSet){
         this.username = username;
         this.password=password;
         this.role=role;
@@ -47,6 +54,8 @@ public class User implements UserDetails {
         this.address=address;
         this.phoneNumber=phoneNumber;
         this.emailAddress=emailAddress;
+        this.appointmentSet=appointmentSet;
+        this.doctor=doctor;
     }
 
 
@@ -149,6 +158,22 @@ public class User implements UserDetails {
         this.emailAddress = emailAddress;
     }
 
+    public Set<Appointment> getAppointmentSet() {
+        return appointmentSet;
+    }
+
+    public void setAppointmentSet(Set<Appointment> appointmentSet) {
+        this.appointmentSet = appointmentSet;
+    }
+
+    public Doctor getDoctorSet() {
+        return doctor;
+    }
+
+    public void setDoctorSet(Doctor doctorSet) {
+        this.doctor = doctorSet;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -162,11 +187,13 @@ public class User implements UserDetails {
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(address, user.address) &&
                 Objects.equals(phoneNumber, user.phoneNumber) &&
-                Objects.equals(emailAddress, user.emailAddress);
+                Objects.equals(emailAddress, user.emailAddress) &&
+                Objects.equals(appointmentSet, user.appointmentSet) &&
+                Objects.equals(doctor, user.doctor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, role, pesel, firstName, lastName, address, phoneNumber, emailAddress);
+        return Objects.hash(username, password, role, pesel, firstName, lastName, address, phoneNumber, emailAddress, appointmentSet, doctor);
     }
 }
