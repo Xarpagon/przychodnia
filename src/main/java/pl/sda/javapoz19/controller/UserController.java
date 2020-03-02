@@ -37,9 +37,6 @@ public class UserController {
         return new ResponseEntity<String>(userService.addUser(patient), HttpStatus.CREATED);
     }
 
-
-
-
     @DeleteMapping(value ="/user/delete/{username}")
     public ResponseEntity<Void>deleteUserByUsername(@PathVariable String username){
         userService.removeUserByUsername(username);

@@ -44,7 +44,7 @@ public class User implements UserDetails {
     }
 
     public User(String username, String password, Role role, String pesel, String firstName, String lastName,
-                Address address, String phoneNumber, String emailAddress, Set<Appointment> appointmentSet, Set<Doctor> doctorSet){
+                Address address, String phoneNumber, String emailAddress, Set<Appointment> appointmentSet, Doctor doctor){
         this.username = username;
         this.password=password;
         this.role=role;
@@ -166,12 +166,12 @@ public class User implements UserDetails {
         this.appointmentSet = appointmentSet;
     }
 
-    public Doctor getDoctorSet() {
+    public Doctor getDoctor() {
         return doctor;
     }
 
-    public void setDoctorSet(Doctor doctorSet) {
-        this.doctor = doctorSet;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     @Override
