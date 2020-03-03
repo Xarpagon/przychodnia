@@ -24,9 +24,6 @@ insert INTO USER (username, password, role_id, pesel, first_Name, last_name, str
 
 
 
-
-
-
 Insert into APPOINTMENT (id, doctor_id, appointment_Date) values (nextval('appointment_Seq'), '2', '2020-02-24 15:00:00');
 Insert into APPOINTMENT (id, doctor_id, appointment_Date) values (nextval('appointment_Seq'), '1', '2020-02-25 15:30:00');
 Insert into APPOINTMENT (id, doctor_id, appointment_Date) values (nextval('appointment_Seq'), '3', '2020-02-26 14:00:00');

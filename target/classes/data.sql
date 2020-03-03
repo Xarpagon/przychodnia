@@ -24,9 +24,6 @@ insert INTO USER (username, password, role_id, pesel, first_Name, last_name, str
 
 
 
-
-
-
 Insert into APPOINTMENT (id, doctor_id, appointment_Date) values (nextval('appointment_Seq'), '2', '2020-02-24 15:00:00');
 Insert into APPOINTMENT (id, doctor_id, appointment_Date) values (nextval('appointment_Seq'), '1', '2020-02-25 15:30:00');
 Insert into APPOINTMENT (id, doctor_id, appointment_Date) values (nextval('appointment_Seq'), '3', '2020-02-26 14:00:00');
@@ -36,8 +33,17 @@ Insert into APPOINTMENT (id, doctor_id, appointment_Date) values (nextval('appoi
 Insert into APPOINTMENT (id, doctor_id, patient_username, appointment_Date, description) values (nextval('appointment_Seq'), '1', 'madek', '2020-03-03 17:00:00', 'fever');
 Insert into APPOINTMENT (id, doctor_id, patient_username, appointment_Date, description) values (nextval('appointment_Seq'), '1', 'kazek', '2020-03-04 10:00:00', 'hangover');
 
-Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (6, 'madek');
-Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (7, 'kazek');
+Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (2, 'doctor1');
+Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (6, 'doctor1');
+Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (7, 'doctor1');
+
+Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (1, 'doctor2');
+Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (4, 'doctor2');
+Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (5, 'doctor2');
+
+Insert into USER_APPOINTMENT_SET (appointment_Set_id, user_username) values (3, 'doctor3');
+
+
 
 commit;
 

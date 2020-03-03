@@ -16,6 +16,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query("select u from User u where u.lastName = :lastName and u.doctor is not null")
     List<User> findDoctorsByLastName(String lastName);
 
+    @Query("select u from User u where u.username = :username and u.doctor is not null")
+    User findDoctorById(String username);
+
+
+
 
 
 
