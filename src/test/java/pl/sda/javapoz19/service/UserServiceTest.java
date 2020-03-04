@@ -14,6 +14,8 @@ import pl.sda.javapoz19.model.User;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 class UserServiceTest {
@@ -63,7 +65,7 @@ class UserServiceTest {
     }
 
     @Test
-    void addUserReturnsTableSize8(){
+    void integrationTestAddUserReturnsTableSize8andNotNullTrueAndDeleteUserReturnsNullTrue(){
 
         //given
         Role role = new Role(1l,"USER");
@@ -76,11 +78,30 @@ class UserServiceTest {
         //when
         String actualUsername = sut.addUser(user);
         int actualSize = sut.retrieveAllUsers().size();
-
+        Optional<User> optionalUserPresent = sut.retrieveUserById(user.getUsername());
         //then
+        assertThat(optionalUserPresent).isPresent();
+        //Assert.assertNotNull(sut.retrieveUserById(user.getUsername()));
         Assert.assertEquals(expectedSize,actualSize);
 
+
+        //when remove user
+        sut.removeUserByUsername(user.getUsername());
+        Optional<User> optionalUserEmpty = sut.retrieveUserById(user.getUsername());
+        //then
+        //Assert.assertNotNull("User was removed successfully", (sut.retrieveUserById(user.getUsername())));
+        assertThat(optionalUserEmpty).isEmpty();
+
+
+        //when trying to remove not existing user
+        sut.removeUserByUsername(user.getUsername());
+
+        //then
+
+
     }
+
+
 
 
 

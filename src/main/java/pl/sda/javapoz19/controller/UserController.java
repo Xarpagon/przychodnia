@@ -51,7 +51,7 @@ public class UserController {
 
     @PutMapping(value = "/user/doctor/update", consumes = "application/json")
     public ResponseEntity<String> updateUserDoctor(@RequestBody User user){
-         return new ResponseEntity<String>(userService.updateUser(user), HttpStatus.OK);
+         return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
     }
 
     @DeleteMapping(value ="/user/delete/{username}")
