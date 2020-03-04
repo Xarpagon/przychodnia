@@ -23,18 +23,17 @@ public class Appointment {
     private String description;
 
 
-    public Appointment() {
-    }
+    public Appointment() {}
 
     public Appointment(Doctor doctor, LocalDateTime appointmentDate) {
         this.doctor = doctor;
         this.appointmentDate = appointmentDate;
     }
 
-    public Appointment(Long id, Doctor doctor, User user, LocalDateTime appointmentDate, String description) {
+    public Appointment(Long id, Doctor doctor, User patient, LocalDateTime appointmentDate, String description) {
         this.id = id;
         this.doctor = doctor;
-        this.patient = user;
+        this.patient = patient;
         this.appointmentDate = appointmentDate;
         this.description = description;
     }
@@ -55,13 +54,9 @@ public class Appointment {
         this.doctor = doctor;
     }
 
-    public User getPatient() {
-        return patient;
-    }
+    public User getPatient() { return patient; }
 
-    public void setPatient(User user) {
-        this.patient = user;
-    }
+    public void setPatient(User patient) { this.patient = patient; }
 
     public LocalDateTime getAppointmentDate() {
         return appointmentDate;

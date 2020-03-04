@@ -15,11 +15,6 @@ import java.util.Set;
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
      Doctor findDoctorById(Long id);
-     @Query("select d from Doctor d where d.user.pesel = :identityNumber")
-     Doctor findDoctorByPesel(String identityNumber);
-     @Query("select d from Doctor d where d.user.lastName = :lastName")
-
-     List<Doctor> findDoctorsByLastName(String lastName);
 
 
      List<Doctor> findDoctorsBySpecialization(Specialization specialization);

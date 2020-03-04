@@ -15,9 +15,6 @@ public class Doctor {
     @SequenceGenerator(name = "doctorSeq", sequenceName = "doctor_seq", allocationSize = 1)
     private Long id;
 
-    @OneToOne(targetEntity = User.class)
-    private User user;
-
     @Enumerated(EnumType.STRING)
     private Specialization specialization;
 
@@ -28,8 +25,8 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(User user, Specialization specialization, Room room){
-        this.user=user;
+    public Doctor( Specialization specialization, Room room){
+
         this.specialization=specialization;
         this.room=room;
     }
@@ -42,13 +39,6 @@ public class Doctor {
         this.id = doctorId;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Specialization getSpecialization() {
         return specialization;
@@ -72,13 +62,12 @@ public class Doctor {
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
         return Objects.equals(id, doctor.id) &&
-                Objects.equals(user, doctor.user) &&
                 specialization == doctor.specialization &&
                 Objects.equals(room, doctor.room);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, specialization, room);
+        return Objects.hash(id, specialization, room);
     }
 }
